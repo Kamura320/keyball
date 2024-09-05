@@ -678,6 +678,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
             }
             return true;
+            
         case SSNP_FRE:
             if (record->event.pressed) {
                 keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_FREE);
@@ -685,6 +686,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             else {
                 keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
             }
+            return true;
 #endif
     }
 
