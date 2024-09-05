@@ -754,6 +754,19 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
     }
+    else {
+        switch (keycode) {
+
+#if KEYBALL_SCROLLSNAP_ENABLE == 2
+            case SSNP_HOR:
+            case SSNP_FRE:
+                keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
+                break;
+#endif
+            default:
+                return true;
+            }
+    }
 
     return true;
 }
