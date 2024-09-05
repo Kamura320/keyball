@@ -668,26 +668,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             // process_auto_mouse may use this in future, if changed order of
             // processes.
             return true;
-
-#if KEYBALL_SCROLLSNAP_ENABLE == 2
-        case SSNP_HOR:
-            if (record->event.pressed) {
-                keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_HORIZONTAL);
-            }
-            else {
-                keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
-            }
-            return true;
-            
-        case SSNP_FRE:
-            if (record->event.pressed) {
-                keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_FREE);
-            }
-            else {
-                keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
-            }
-            return true;
-#endif
     }
 
     // process events which works on pressed only.
@@ -738,7 +718,18 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             case SCRL_DVD:
                 add_scroll_div(-1);
                 break;
-
+                
+#if KEYBALL_SCROLLSNAP_ENABLE == 2
+            case SSNP_HOR:
+                keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_HORIZONTAL);
+                break;
+            case SSNP_VRT:
+                keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
+                break;
+            case SSNP_FRE:
+                keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_FREE);
+                break;
+#endif
 
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
             case AML_TO:
